@@ -35,8 +35,13 @@ function UserContext({ children }: { children: React.ReactNode }) {
         console.log(error)
       }
     }
-    getUser()
-  }, [session])
+
+    if (session?.status === "authenticated") {
+      getUser()
+    } else if (session?.status === "unauthenticated") {
+      setUser(null)
+    }
+  }, [session?.status])
 
   return (
     <userDataContext.Provider value={data}>

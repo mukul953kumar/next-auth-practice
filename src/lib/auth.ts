@@ -54,7 +54,7 @@ const authOptions:NextAuthOptions={
                     await connectDb()
                     let existUser = await User.findOne({email:user?.email})
                     if(!existUser){
-                        let existUser = await User.create({
+                        existUser = await User.create({
                             name:user.name,
                             email:user?.email
                         })
